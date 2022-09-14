@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResultPagerViewController" customModule="Bicloo" customModuleProvider="target">
+            <connections>
+                <outlet property="pagerContainer" destination="TEc-bG-xKU" id="ufS-0A-RRI"/>
+                <outlet property="segmentedControl" destination="WuJ-VQ-kkI" id="lyQ-fp-hOE"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WuJ-VQ-kkI">
+                    <rect key="frame" x="136.5" y="54" width="141" height="32"/>
+                    <segments>
+                        <segment title="Stations"/>
+                        <segment title="Carte"/>
+                    </segments>
+                    <connections>
+                        <action selector="onSegmentedControlValueChanged:" destination="-1" eventType="valueChanged" id="79M-MM-SRc"/>
+                    </connections>
+                </segmentedControl>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TEc-bG-xKU">
+                    <rect key="frame" x="0.0" y="95" width="414" height="767"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="WuJ-VQ-kkI" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="500-WP-vhm"/>
+                <constraint firstItem="WuJ-VQ-kkI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="SSC-Ct-t7I"/>
+                <constraint firstItem="TEc-bG-xKU" firstAttribute="top" secondItem="WuJ-VQ-kkI" secondAttribute="bottom" constant="10" id="Vk1-MB-PlN"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TEc-bG-xKU" secondAttribute="trailing" id="Zr9-73-4ZL"/>
+                <constraint firstItem="TEc-bG-xKU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="aWF-4t-YeB"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="TEc-bG-xKU" secondAttribute="bottom" id="m2w-N7-iNz"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="106"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
