@@ -7,15 +7,16 @@
 
 import Foundation
 import Combine
+import BikeKit
 
 class StationsViewModel: ObservableObject {
 
-	private let restManager = RestManager()
+	private let restDataSource = RestDataSource()
 
 	@Published var selectedStation: [StationEntity] = []
 	@Published var stations: [StationEntity] = []
 	@Published private(set) var isLoading: Bool = false
-	@Published var throwable: StationsError?
+	@Published var throwable: Error?
 
 	public static let shared = StationsViewModel()
 
@@ -23,18 +24,21 @@ class StationsViewModel: ObservableObject {
 
 	func fetchStations(contract: ContractEntity) {
 		isLoading = true
-		restManager.getStationsOfCity(city: contract.name)
-			.catch({ [weak self] error -> Just<StationsDTO> in
-				self?.throwable = StationsError.apiError
-				return Just<StationsDTO>([])
-			})
-				.map({ [weak self] response -> [StationEntity] in
-					self?.isLoading = false
-					let stations_ = response.map({ StationEntity(dto: $0) })
-					self?.selectedStation = stations_
-					return stations_
-				})
-					.assign(to: &$stations)
+
+		restDataSource.getStationsOfCity(city: contract.name) { stations, error in
+			DispatchQueue.main.async {
+
+				if let stations_ = stations {
+					self.stations = stations_
+				}
+				if let error_ = error {
+					self.throwable = error_
+				}
+
+			}
+
+		}
+
 	}
 
 	func select(station: StationEntity) {

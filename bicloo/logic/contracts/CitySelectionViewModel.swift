@@ -7,16 +7,17 @@
 
 import Foundation
 import Combine
+import BikeKit
 
 class CitySelectionViewModel: ObservableObject {
 
-	private let restManager = RestManager()
+	private let restDataSource = RestDataSource()
 
 	private var originalContracts: [ContractEntity] = []
 
 	@Published var contracts: [ContractEntity] = []
 	@Published private(set) var isLoading: Bool = false
-	@Published var throwable: StationsError?
+	@Published var throwable: Error?
 
 	init() {
 		fetchContracts()
@@ -24,16 +25,19 @@ class CitySelectionViewModel: ObservableObject {
 
 	func fetchContracts() {
 
-		restManager.fetchContracts()
-			.catch({ [weak self] error -> Just<[ContractDTO]> in
-				self?.throwable = StationsError.apiError
-				return Just<[ContractDTO]>([])
-			})
-				.map({ [weak self] response -> [ContractEntity] in
-					self?.isLoading = false
-					return response.map { $0.toEntity() }
-				})
-					.assign(to: &$contracts)
+		restDataSource.getContracts { contracts, error in
+			DispatchQueue.main.async {
+
+				if let contracts_ = contracts {
+					self.contracts = contracts_
+				}
+				if let error_ = error {
+					self.throwable = error_
+				}
+
+			}
+
+		}
 
 	}
 

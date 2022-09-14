@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import BikeKit
 
 class StationTableViewCell: UITableViewCell {
 
@@ -14,7 +15,8 @@ class StationTableViewCell: UITableViewCell {
 	@IBOutlet weak var stationAddressLabel: UILabel!
 
 	func loadWith(_ station: StationEntity) {
-		stationStateView.backgroundColor = station.state == .OPEN ? UIColor.systemMint : UIColor.systemRed
+		
+		stationStateView.backgroundColor = station.state == StationDTO.State.open ? UIColor.systemMint : UIColor.systemRed
 		stationNameLabel.text = station.name
 		stationAddressLabel.text = station.address
 	}

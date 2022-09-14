@@ -9,6 +9,7 @@ import UIKit
 import MapKit
 import Combine
 import CoreLocation
+import BikeKit
 
 class MapViewController: UIViewController {
 
