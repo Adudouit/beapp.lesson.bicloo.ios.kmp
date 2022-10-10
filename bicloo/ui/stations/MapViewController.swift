@@ -21,7 +21,7 @@ class MapViewController: UIViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
-		viewModel.$selectedStation
+		viewModel.$stations
 			.sink { [weak self] stations_ in
 				let annotations: [MKPointAnnotation] = stations_.map { station in
 					let point = MKPointAnnotation()

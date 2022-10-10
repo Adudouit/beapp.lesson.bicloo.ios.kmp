@@ -39,7 +39,7 @@ class StationsViewController: UIViewController {
 
 extension StationsViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		viewModel.select(station: stations[indexPath.row])
+
 	}
 }
 

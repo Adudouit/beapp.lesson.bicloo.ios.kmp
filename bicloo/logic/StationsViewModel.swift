@@ -13,7 +13,6 @@ class StationsViewModel: ObservableObject {
 
 	private let restDataSource = RestDataSource()
 
-	@Published var selectedStation: [StationEntity] = []
 	@Published var stations: [StationEntity] = []
 	@Published private(set) var isLoading: Bool = false
 	@Published var throwable: Error?
@@ -39,14 +38,6 @@ class StationsViewModel: ObservableObject {
 
 		}
 
-	}
-
-	func select(station: StationEntity) {
-		self.selectedStation = [station]
-	}
-
-	func reset() {
-		self.selectedStation = self.stations
 	}
 
 }

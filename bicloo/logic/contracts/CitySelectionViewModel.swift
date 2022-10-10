@@ -25,7 +25,7 @@ class CitySelectionViewModel: ObservableObject {
 
 	func fetchContracts() {
 
-		restDataSource.getContracts { contracts, error in
+		restDataSource.getContracts(fromCache: true) { contracts, error in
 			DispatchQueue.main.async {
 
 				if let contracts_ = contracts {
@@ -55,7 +55,7 @@ class CitySelectionViewModel: ObservableObject {
 		}
 
 		contracts = originalContracts.filter({ contract in
-			contract.name.lowercased().contains(search.lowercased())
+			contract.match(query: search)
 		})
 	}
 
